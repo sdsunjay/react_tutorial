@@ -11,9 +11,9 @@ class App extends Component {
     this.state = {
       // you can set any properties
       persons: [
-        {name: 'Max', age: 28},
-        {name: 'Manu', age: 29},
-        {name: 'Stephanie', age: 26}
+        { id: 'qwe', name: 'Max', age: 28},
+        { id: 'asd', name: 'Manu', age: 29},
+        { id: 'zxc', name: 'Stephanie', age: 26}
       ],
       otherState: 'some value',
       showPersons: false
@@ -22,33 +22,36 @@ class App extends Component {
       // someInitialValue: this.props.initialValue
     }
     // This binding is necessary to make `this` work in the callback
-    this. togglePersonsHandler = this.togglePersonsHandler.bind(this);
+    this.togglePersonsHandler = this.togglePersonsHandler.bind(this);
+    // This binding is necessary to make `this` work in the callback
+    this.nameChangedHandler = this.nameChangedHandler.bind(this);
+  }
+  nameChangedHandler = (event, id ) => {
+
+    // findIndex takes a function as a parameter
+    const personIndex = this.state.persons.findIndex(p => {
+      return p.id === id
+    });
+
+    const person  = {
+      ...this.state.persons[personIndex]
+    };
+
+    person.name = event.target.value;
+    let persons = [...this.state.persons];
+    persons[personIndex] = person;
+
+    this.setState( {persons: persons } )
   }
 
-  switchNameHandler = (newName) => {
-    // console.log('was clicked');
-    //DON'T DO THIS: this.state.persons[0].name = 'Maximilian';
-    this.setState(
-      {persons: [
-        {name: newName, age: 30},
-        {name: 'Manu', age: 31},
-        {name: 'Stephanie', age: 32}
-      ]}
-    );
+  deletePersonHandler = (personIndex) => {
+   //const persons = this.state.persons.slice();
+   const persons = [...this.state.persons];
+   persons.splice(personIndex, 1);
+   this.setState({persons: persons});
   }
 
-
-  nameChangeHandler = (event) => {
-    this.setState( {
-      persons: [
-        {  name: 'Max', age: 28 },
-        {  name: event.target.value, age: 29 },
-        {  name: 'Stephanie', age: 26 }
-      ]
-    } )
-  }
   togglePersonsHandler(){
-
     this.setState(state => ({
       showPersons: !state.showPersons
     }));
@@ -68,13 +71,15 @@ class App extends Component {
     if(this.state.showPersons ) {
       persons = (
         <div>
-        {
-          this.state.persons.map(person => {
+        {this.state.persons.map((person, index) => {
             return <Person
-            name={person.name}
-            age={person.age} />
-          })
-        }
+              click={() => this.deletePersonHandler(index)}
+              name={person.name}
+              age={person.age}
+              key={person.id}
+              changed={(event) => this.nameChangedHandler(event, person.id)}
+              />
+          })}
         </div>
       );
     }
