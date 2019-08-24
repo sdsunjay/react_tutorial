@@ -118,17 +118,10 @@ class App extends Component {
     let persons = null;
 
     if (this.state.showPersons) {
-      persons = <
-        Persons
-      persons = {
-        this.state.persons
-      }
-      clicked = {
-        this.deletePersonHandler
-      }
-      changed = {
-        this.nameChangedHandler
-      }
+      persons = <Persons
+        persons = {this.state.persons}
+        clicked = {this.deletePersonHandler}
+        changed = {this.nameChangedHandler}
       />;
     }
 
@@ -139,18 +132,11 @@ class App extends Component {
           Remove Cockpit
       </button>
       {this.state.showCockpit ?
-      <Cockpit title = {
-        this.props.appTitle
-      }
-      persons = {
-        this.state.persons
-      }
-      showPersons = {
-        this.state.showPersons
-      }
-      clicked = {
-        this.togglePersonsHandler
-      }
+      <Cockpit
+        title = {this.props.appTitle}
+        personsLength = {this.state.persons.length}
+        showPersons = {this.state.showPersons}
+        clicked = {this.togglePersonsHandler}
       /> :  null}
       {persons}
       </div>
