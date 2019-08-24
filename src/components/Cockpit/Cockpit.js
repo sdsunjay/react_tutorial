@@ -14,11 +14,19 @@ const cockpit = (props) => {
   if (props.persons.length <= 1) {
     classes.push('bold'); // red and bold
   }
+  const style = {
+    backgroundColor: 'green',
+    color: 'white',
+    font: 'inherit',
+    border: '1px solid blue',
+    padding: '8px',
+    cursor: 'pointer'
+  };
   return (
-    <div classname={classes.Cockpit}>
+    <div className={classes.Cockpit}>
       <h1>{props.title}</h1>
       <p className={classes.join(' ')}>This is really working!</p>
-      <button
+      <button style={style}
         onClick = { props.clicked }>
         Toggle Persons
       </button>
