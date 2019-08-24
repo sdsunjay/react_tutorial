@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import './Person.css';
 import Aux from '../../hoc/Aux'
 
@@ -26,7 +26,7 @@ class Person extends Component {
   } */
     console.log('[Person.js] rendering...');
     return (
-      <Aux>
+      <Fragment>
       <div className="Person" >
         <p onClick={this.props.click}>
             I'm a Person, my name is {this.props.name} and I'm {this.props.age} years old!
@@ -37,7 +37,7 @@ class Person extends Component {
       <div>
         <p>Adjacent JSX element on a root level</p>
       </div>
-      </Aux>
+      </Fragment>
     );
   }
 }
