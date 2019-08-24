@@ -37,11 +37,13 @@ class App extends Component {
     return state;
   }
 
+  /**
   componentWillMount() {
     // rarely used, will be removed in the future
     console.log('[App.js] componentWillMount');
     // you don't really use this
   }
+  */
   componentDidMount() {
     console.log('[App.js] componentDidMount');
   }
