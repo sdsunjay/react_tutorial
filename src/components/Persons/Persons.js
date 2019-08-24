@@ -1,9 +1,7 @@
-import React, {
-  Component
-} from 'react';
+import React, { PureComponent } from 'react';
 import Person from './Person/Person';
 
-class Persons extends Component {
+class Persons extends PureComponent {
   constructor(props) {
     // Required step: always call the parent class' constructor
     super(props);
@@ -24,6 +22,9 @@ class Persons extends Component {
   }
   */
 
+  // PureComponent checks all the props in the shouldComponentUpdate
+  // saves some code
+/**
   shouldComponentUpdate(nextProps, nextState) {
     // return this.props == nextProps
     console.log('[Persons.js] shouldComponentUpdate');
@@ -32,7 +33,10 @@ class Persons extends Component {
     // this is 'shallow' comparison
     return (nextProps.persons !== this.props.persons)
 
+
   }
+  */
+
 
   getSnapshotBeforeUpdate(prevProps, prevState) {
     console.log('[Persons.js] getSnapshotBeforeUpdate');
