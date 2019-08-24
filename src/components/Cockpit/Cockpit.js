@@ -9,11 +9,12 @@ const cockpit = (props) => {
     // Can use the same as componentDidUpdate
     // Http request...
     // executes for every render cycle
-    setTimeout( () => {
+    const timer = setTimeout( () => {
        alert('Saved data to the cloud');
     }, 1000);
     return () => {
       // runs after every render cycle
+      clearTimeout(timer);
       console.log('[Cockpit.js] cleanup work in useEffect');
     }
 //  }, [props.persons] ); // will only execute when our persons changed
