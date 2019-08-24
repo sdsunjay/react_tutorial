@@ -27,7 +27,11 @@ class Persons extends Component {
   shouldComponentUpdate(nextProps, nextState) {
     // return this.props == nextProps
     console.log('[Persons.js] shouldComponentUpdate');
-    return true;
+    // if there has been a change in persons, re-render, otherwise don't
+    // this only checks the memory address, not the characteristics of the Persons
+    // this is 'shallow' comparison
+    return (nextProps.persons !== this.props.persons)
+
   }
 
   getSnapshotBeforeUpdate(prevProps, prevState) {
