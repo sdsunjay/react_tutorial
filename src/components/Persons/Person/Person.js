@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from 'react';
 import './Person.css';
-import Aux from '../../hoc/Aux'
+import Aux from '../../../hoc/Aux'
 
 class Person extends Component {
   constructor(props) {

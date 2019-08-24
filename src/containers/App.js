@@ -5,6 +5,7 @@ import './App.css';
 import Persons from '../components/Persons/Persons';
 import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary';
 import Cockpit from '../components/Cockpit/Cockpit';
+import WithClass from '../hoc/WithClass';
 
 class App extends Component {
   constructor(props) {
@@ -126,8 +127,8 @@ class App extends Component {
     }
 
 
-    return ( <
-      div className = "App" >
+    return (
+      <WithClass classes="App">
       <button onClick={this.toggleCockpitHandler}>
           Remove Cockpit
       </button>
@@ -139,7 +140,7 @@ class App extends Component {
         clicked = {this.togglePersonsHandler}
       /> :  null}
       {persons}
-      </div>
+      </WithClass>
     );
     // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Does this work now?'));
   } // closes the render function
