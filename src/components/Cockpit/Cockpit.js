@@ -3,12 +3,19 @@ import classes from './Cockpit.css';
 
 const cockpit = (props) => {
 
+
   useEffect( () => {
     console.log('[Cockpit.js] useEffect');
     // Can use the same as componentDidUpdate
     // Http request...
     // executes for every render cycle
-  });
+    setTimeout( () => {
+       alert('Saved data to the cloud');
+    }, 1000);
+//  }, [props.persons] ); // will only execute when our persons changed
+}, [] ); // will only run the first time
+
+
 
   const classes = [];
   let btnClass = '';
