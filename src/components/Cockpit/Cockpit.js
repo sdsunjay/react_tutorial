@@ -12,8 +12,21 @@ const cockpit = (props) => {
     setTimeout( () => {
        alert('Saved data to the cloud');
     }, 1000);
+    return () => {
+      // runs after every render cycle
+      console.log('[Cockpit.js] cleanup work in useEffect');
+    }
 //  }, [props.persons] ); // will only execute when our persons changed
 }, [] ); // will only run the first time
+
+  useEffect( () => {
+    console.log('[Cockpit.js] 2nd useEffect');
+    return () => {
+      // runs after every render cycle
+      console.log('[Cockpit.js] cleanup work in 2nd useEffect');
+    }
+
+  }); // will only run the every time it renders
 
 
 
