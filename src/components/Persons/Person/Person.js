@@ -1,6 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import './Person.css';
 import Aux from '../../../hoc/Aux'
+import withClass from '../../../hoc/withClass'
 
 class Person extends Component {
   constructor(props) {
@@ -27,19 +28,14 @@ class Person extends Component {
     console.log('[Person.js] rendering...');
     return (
       <Fragment>
-      <div className="Person" >
         <p onClick={this.props.click}>
             I'm a Person, my name is {this.props.name} and I'm {this.props.age} years old!
         </p>
         <p>{this.props.children}</p>
         <input type="text" onChange={this.props.changed} value={this.props.name}/>
-      </div>
-      <div>
-        <p>Adjacent JSX element on a root level</p>
-      </div>
       </Fragment>
     );
   }
 }
 
-export default Person;
+export default withClass(Person, 'Person');
