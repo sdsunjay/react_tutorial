@@ -1,4 +1,6 @@
-import React, { Component } from 'react';
+import React, {
+  Component
+} from 'react';
 import './App.css';
 import Persons from '../components/Persons/Persons';
 import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary';
@@ -14,10 +16,21 @@ class App extends Component {
     this.state = {
       // you can set any properties
       // id is arbitrarily set
-      persons: [
-        { id: 'qwe', name: 'Max', age: 28},
-        { id: 'asd', name: 'Manu', age: 29},
-        { id: 'zxc', name: 'Stephanie', age: 26}
+      persons: [{
+          id: 'qwe',
+          name: 'Max',
+          age: 28
+        },
+        {
+          id: 'asd',
+          name: 'Manu',
+          age: 29
+        },
+        {
+          id: 'zxc',
+          name: 'Stephanie',
+          age: 26
+        }
       ],
       otherState: 'some value',
       showPersons: false
@@ -48,14 +61,14 @@ class App extends Component {
     console.log('[App.js] componentDidMount');
   }
 
-  nameChangedHandler = (event, id ) => {
+  nameChangedHandler = (event, id) => {
 
     // findIndex takes a function as a parameter
     const personIndex = this.state.persons.findIndex(p => {
       return p.id === id
     });
 
-    const person  = {
+    const person = {
       ...this.state.persons[personIndex]
     };
 
@@ -63,17 +76,21 @@ class App extends Component {
     let persons = [...this.state.persons];
     persons[personIndex] = person;
 
-    this.setState( {persons: persons } )
+    this.setState({
+      persons: persons
+    })
   }
 
   deletePersonHandler = (personIndex) => {
-   //const persons = this.state.persons.slice();
-   const persons = [...this.state.persons];
-   persons.splice(personIndex, 1);
-   this.setState({persons: persons});
+    //const persons = this.state.persons.slice();
+    const persons = [...this.state.persons];
+    persons.splice(personIndex, 1);
+    this.setState({
+      persons: persons
+    });
   }
 
-  togglePersonsHandler(){
+  togglePersonsHandler() {
     this.setState(state => ({
       showPersons: !state.showPersons
     }));
@@ -84,24 +101,41 @@ class App extends Component {
 
     let persons = null;
 
-    if(this.state.showPersons ) {
-      persons =
-          <Persons
-            persons={this.state.persons}
-            clicked={this.deletePersonHandler}
-            changed={this.nameChangedHandler} />;
+    if (this.state.showPersons) {
+      persons = <
+        Persons
+      persons = {
+        this.state.persons
+      }
+      clicked = {
+        this.deletePersonHandler
+      }
+      changed = {
+        this.nameChangedHandler
+      }
+      />;
     }
 
 
-    return (
-      <div className="App">
-        <Cockpit
-          title={this.props.appTitle}
-          persons={this.state.persons}
-          showPersons={this.state.showPersons}
-          clicked={this.togglePersonsHandler}/>
-        {persons}
-      </div>
+    return ( <
+      div className = "App" >
+      <
+      Cockpit title = {
+        this.props.appTitle
+      }
+      persons = {
+        this.state.persons
+      }
+      showPersons = {
+        this.state.showPersons
+      }
+      clicked = {
+        this.togglePersonsHandler
+      }
+      /> {
+        persons
+      } <
+      /div>
     );
     // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Does this work now?'));
   } // closes the render function
