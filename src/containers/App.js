@@ -9,9 +9,11 @@ class App extends Component {
     // Required step: always call the parent class' constructor
     super(props);
 
+    console.log('[App.js] constructor');
     // Set the state directly. Use props if necessary.
     this.state = {
       // you can set any properties
+      // id is arbitrarily set
       persons: [
         { id: 'qwe', name: 'Max', age: 28},
         { id: 'asd', name: 'Manu', age: 29},
@@ -28,6 +30,16 @@ class App extends Component {
     // This binding is necessary to make `this` work in the callback
     this.nameChangedHandler = this.nameChangedHandler.bind(this);
   }
+
+  static getDerivedStateFromProps(props, state) {
+    console.log('[App.js] getDerivedStateFromProps');
+    return state;
+  }
+
+  componentDidMount() {
+    console.log('[App.js] componentDidMount');
+  }
+
   nameChangedHandler = (event, id ) => {
 
     // findIndex takes a function as a parameter
@@ -60,14 +72,7 @@ class App extends Component {
   }
 
   render() {
-    const style = {
-      backgroundColor: 'green',
-      color: 'white',
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer'
-    };
+    console.log('[App.js] render');
 
     let persons = null;
 
