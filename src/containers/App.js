@@ -33,13 +33,16 @@ class App extends Component {
         }
       ],
       otherState: 'some value',
-      showPersons: false
+      showPersons: false,
+      showCockpit: true
       // Note: think carefully before initializing
       // state based on props!
       // someInitialValue: this.props.initialValue
     }
     // This binding is necessary to make `this` work in the callback
     this.togglePersonsHandler = this.togglePersonsHandler.bind(this);
+    // This binding is necessary to make `this` work in the callback
+    this.toggleCockpitHandler = this.toggleCockpitHandler.bind(this);
     // This binding is necessary to make `this` work in the callback
     this.nameChangedHandler = this.nameChangedHandler.bind(this);
   }
@@ -103,6 +106,11 @@ class App extends Component {
       showPersons: !state.showPersons
     }));
   }
+  toggleCockpitHandler() {
+    this.setState(state => ({
+      showCockpit: !state.showCockpit
+    }));
+  }
 
   render() {
     console.log('[App.js] render');
@@ -127,8 +135,11 @@ class App extends Component {
 
     return ( <
       div className = "App" >
-      <
-      Cockpit title = {
+      <button onClick={this.toggleCockpitHandler}>
+          Remove Cockpit
+      </button>
+      {this.state.showCockpit ?
+      <Cockpit title = {
         this.props.appTitle
       }
       persons = {
@@ -140,10 +151,9 @@ class App extends Component {
       clicked = {
         this.togglePersonsHandler
       }
-      /> {
-        persons
-      } <
-      /div>
+      /> :  null}
+      {persons}
+      </div>
     );
     // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Does this work now?'));
   } // closes the render function
