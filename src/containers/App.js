@@ -5,7 +5,7 @@ import './App.css';
 import Persons from '../components/Persons/Persons';
 import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary';
 import Cockpit from '../components/Cockpit/Cockpit';
-import WithClass from '../hoc/WithClass';
+import withClass from '../hoc/withClass';
 
 class App extends Component {
   constructor(props) {
@@ -128,7 +128,7 @@ class App extends Component {
 
 
     return (
-      <WithClass classes="App">
+      <React.Fragment>
       <button onClick={this.toggleCockpitHandler}>
           Remove Cockpit
       </button>
@@ -140,11 +140,11 @@ class App extends Component {
         clicked = {this.togglePersonsHandler}
       /> :  null}
       {persons}
-      </WithClass>
+      </React.Fragment>
     );
     // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Does this work now?'));
   } // closes the render function
 }
 
 // Radium is a higher order component
-export default App;
+export default withClass(App, "App");
