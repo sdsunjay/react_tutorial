@@ -6,6 +6,7 @@ import Persons from '../components/Persons/Persons';
 import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary';
 import Cockpit from '../components/Cockpit/Cockpit';
 import withClass from '../hoc/withClass';
+import AuthContext from '../context/auth-context';
 
 class App extends Component {
   constructor(props) {
@@ -151,7 +152,6 @@ class App extends Component {
         personsLength = {this.state.persons.length}
         showPersons = {this.state.showPersons}
         clicked = {this.togglePersonsHandler}
-        login = {this.loginHandler}
         />;
     }
 
@@ -161,8 +161,10 @@ class App extends Component {
       <button onClick={this.toggleCockpitHandler}>
           Remove Cockpit
       </button>
-      {cockpit}
-      {persons}
+      <AuthContext.Provider value={ {authenticated: this.state.authenticated, login: this.loginHandler} }>
+        {cockpit}
+        {persons}
+      </AuthContext.Provider>
       </React.Fragment>
     );
     // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Does this work now?'));

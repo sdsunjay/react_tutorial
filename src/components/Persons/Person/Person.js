@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import './Person.css';
 import Aux from '../../../hoc/Aux'
 import withClass from '../../../hoc/withClass'
+import AuthContext from '../../../context/auth-context';
+
 
 class Person extends Component {
   constructor(props) {
@@ -34,21 +36,25 @@ class Person extends Component {
     throw new Error('Something went wrong');
   } */
     console.log('[Person.js] rendering...');
-    return ( <Fragment >
-      {this.props.isAuth ? <p>Authenticated</p> : <p>Please Log In </p>}
-      <p onClick = {this.props.click} >
-        I 'm a Person, my name is {this.props.name} and I'm {this.props.age} years old!
-      </p>
-      <p> {this.props.children} < /p>
-      <input
-        // only works in class based components
-        // ref = { (inputEl) => {this.inputElement =  inputEl}}
-        ref = {this.inputElementRef}
-        type = "text"
-        onChange = {this.props.changed}
-        value = {this.props.name}
-      />
-      </Fragment>
+
+      return(
+        <Fragment >
+          <AuthContext.Consumer>
+            {(context) =>
+              {context.authenticated ? <p>Authenticated</p> : <p>Please Log In </p>}}
+          </AuthContext.Consumer>
+          <p onClick = {this.props.click} >
+            I 'm a Person, my name is {this.props.name} and I'm {this.props.age} years old!
+          </p>
+          <p> {this.props.children} < /p>
+          <input
+          // only works in class based components
+          // ref = { (inputEl) => {this.inputElement =  inputEl}}
+          ref = {this.inputElementRef}
+          type = "text"
+          onChange = {this.props.changed}
+          value = {this.props.name} />
+        </Fragment>
     );
   }
 }
