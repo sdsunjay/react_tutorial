@@ -1,20 +1,24 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import classes from './Cockpit.css';
 
 const cockpit = (props) => {
 
+  const toggleBtnRef = useRef(null);
 
   useEffect( () => {
     console.log('[Cockpit.js] useEffect');
     // Can use the same as componentDidUpdate
     // Http request...
     // executes for every render cycle
+    /*
     const timer = setTimeout( () => {
        alert('Saved data to the cloud');
     }, 1000);
+    */
+    toggleBtnRef.current.click();
     return () => {
       // runs after every render cycle
-      clearTimeout(timer);
+      //clearTimeout(timer);
       console.log('[Cockpit.js] cleanup work in useEffect');
     }
 //  }, [props.persons] ); // will only execute when our persons changed
@@ -55,10 +59,11 @@ const cockpit = (props) => {
     <div className={classes.Cockpit}>
       <h1>{props.title}</h1>
       <p className={classes.join(' ')}>This is really working!</p>
-      <button style={style}
+      <button ref={toggleBtnRef} style={style}
         onClick = { props.clicked }>
         Toggle Persons
       </button>
+      <button onClick = {props.login}>Log In</button>
     </div>
   );
 };

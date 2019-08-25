@@ -36,7 +36,8 @@ class App extends Component {
       otherState: 'some value',
       showPersons: false,
       showCockpit: true,
-      changeCounter: 0
+      changeCounter: 0,
+      authenticated: false
       // Note: think carefully before initializing
       // state based on props!
       // someInitialValue: this.props.initialValue
@@ -47,6 +48,8 @@ class App extends Component {
     this.toggleCockpitHandler = this.toggleCockpitHandler.bind(this);
     // This binding is necessary to make `this` work in the callback
     this.nameChangedHandler = this.nameChangedHandler.bind(this);
+    // This binding is necessary to make `this` work in the callback
+    this.loginHandler = this.loginHandler.bind(this);
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -112,11 +115,19 @@ class App extends Component {
       showPersons: !state.showPersons
     }));
   }
+
   toggleCockpitHandler() {
     this.setState(state => ({
       showCockpit: !state.showCockpit
     }));
   }
+
+  loginHandler() {
+    this.setState(state => ({
+      authenticated: true
+    }));
+  }
+
 
   render() {
     console.log('[App.js] render');
@@ -128,7 +139,20 @@ class App extends Component {
         persons = {this.state.persons}
         clicked = {this.deletePersonHandler}
         changed = {this.nameChangedHandler}
+        isAuthenticated = {this.state.authenticated}
       />;
+    }
+
+    let cockpit = null;
+
+    if (this.state.showCockpit) {
+      cockpit = <Cockpit
+        title = {this.props.appTitle}
+        personsLength = {this.state.persons.length}
+        showPersons = {this.state.showPersons}
+        clicked = {this.togglePersonsHandler}
+        login = {this.loginHandler}
+        />;
     }
 
 
@@ -137,13 +161,7 @@ class App extends Component {
       <button onClick={this.toggleCockpitHandler}>
           Remove Cockpit
       </button>
-      {this.state.showCockpit ?
-      <Cockpit
-        title = {this.props.appTitle}
-        personsLength = {this.state.persons.length}
-        showPersons = {this.state.showPersons}
-        clicked = {this.togglePersonsHandler}
-      /> :  null}
+      {cockpit}
       {persons}
       </React.Fragment>
     );

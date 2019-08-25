@@ -9,6 +9,12 @@ class Person extends Component {
   constructor(props) {
     // Required step: always call the parent class' constructor
     super(props);
+    // this is the more modern approach
+    this.inputElementRef = React.createRef();
+  }
+  componentDidMount() {
+    //this.inputElement.focus();
+    this.inputElementRef.current.focus();
   }
   /**
 
@@ -28,13 +34,20 @@ class Person extends Component {
     throw new Error('Something went wrong');
   } */
     console.log('[Person.js] rendering...');
-    return (
-      <Fragment>
-        <p onClick={this.props.click}>
-            I'm a Person, my name is {this.props.name} and I'm {this.props.age} years old!
-        </p>
-        <p>{this.props.children}</p>
-        <input type="text" onChange={this.props.changed} value={this.props.name}/>
+    return ( <Fragment >
+      {this.props.isAuth ? <p>Authenticated</p> : <p>Please Log In </p>}
+      <p onClick = {this.props.click} >
+        I 'm a Person, my name is {this.props.name} and I'm {this.props.age} years old!
+      </p>
+      <p> {this.props.children} < /p>
+      <input
+        // only works in class based components
+        // ref = { (inputEl) => {this.inputElement =  inputEl}}
+        ref = {this.inputElementRef}
+        type = "text"
+        onChange = {this.props.changed}
+        value = {this.props.name}
+      />
       </Fragment>
     );
   }
