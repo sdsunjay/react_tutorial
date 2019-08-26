@@ -155,7 +155,6 @@ class App extends Component {
         />;
     }
 
-
     return (
       <React.Fragment>
       <button onClick={this.toggleCockpitHandler}>
