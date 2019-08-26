@@ -43,7 +43,7 @@ class Person extends Component {
             {context => context.authenticated ? <p>Authenticated</p> : <p>Please log in</p>}
           </AuthContext.Consumer>
           <p onClick = {this.props.click} >
-            I 'm a Person, my name is {this.props.name} and I'm {this.props.age} years old!
+            I'm a Person, my name is {this.props.name} and I'm {this.props.age} years old!
           </p>
           <p> {this.props.children} < /p>
           <input
