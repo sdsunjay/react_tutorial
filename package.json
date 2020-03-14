@@ -16,7 +16,7 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "acorn": "^7.0.0",
+    "acorn": "^7.1.1",
     "ajv": "^6.10.2",
     "ajv-keywords": "^3.4.1",
     "babel-eslint": "^10.0.2",
